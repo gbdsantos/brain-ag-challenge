@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model RuralProducer {
+  id                         String   @id @default(uuid())
+  cpf_cnpj                   String   @unique
+  producer_name              String
+  farm_name                  String
+  city                       String
+  state                      String
+  agricultural_area_hectares Int
+  vegetation_area_hectares   Int
+  total_area_hectares        Int
+  planted_crops              String[]
+
+  @@map("rural_producer")
+}
