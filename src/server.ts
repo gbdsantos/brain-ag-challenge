@@ -39,9 +39,49 @@ app.post('/create', async (request, response) => {
   return response.status(201).json(ruralProducer);
 });
 
-app.patch('/update/:id', (request, response) => {
+app.patch('/update/:id', async (request, response) => {
+  const {
+    cpf_cnpj,
+    producer_name,
+    farm_name,
+    city,
+    state,
+    agricultural_area_hectares,
+    vegetation_area_hectares,
+    total_area_hectares,
+    planted_crops
+  } = request.body;
 
-  return response.status(200);
+  const { id } = request.params;
+
+  let ruralProducer = await prisma.ruralProducer.findUnique({
+    where: {
+      id
+    }
+  });
+
+  if (ruralProducer) {
+    const updatedRuralProducer = await prisma.ruralProducer.update({
+      where: {
+        id: id
+      },
+      data: {
+        cpf_cnpj,
+        producer_name,
+        farm_name,
+        city,
+        state,
+        agricultural_area_hectares,
+        vegetation_area_hectares,
+        total_area_hectares,
+        planted_crops
+      }
+    });
+
+    return response.status(200).json(updatedRuralProducer);
+  } else {
+    return response.status(404).json({ message: "Rural producer not found."});
+  }
 });
 
 app.delete('/delete/:id', (request, response) => {
