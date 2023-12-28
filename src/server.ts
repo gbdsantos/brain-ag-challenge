@@ -84,9 +84,26 @@ app.patch('/update/:id', async (request, response) => {
   }
 });
 
-app.delete('/delete/:id', (request, response) => {
+app.delete('/delete/:cpf_cnpj', async (request, response) => {
+  const { cpf_cnpj } = request.params;
 
-  return response.send(204);
+  let ruralProducer = await prisma.ruralProducer.findUnique({
+    where: {
+      cpf_cnpj
+    }
+  });
+
+  if (ruralProducer) {
+    await prisma.ruralProducer.delete({
+      where: {
+        cpf_cnpj
+      }
+    });
+
+    return response.status(204).send();
+  } else {
+    return response.status(404).json({ message: "Rural producer not found."});
+  }
 });
 
 app.listen(3333, () => {
