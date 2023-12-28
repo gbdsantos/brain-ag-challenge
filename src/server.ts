@@ -37,7 +37,16 @@ app.post('/create', async (request, response) => {
   });
 
   return response.status(201).json(ruralProducer);
+});
 
+app.patch('/update/:id', (request, response) => {
+
+  return response.status(200);
+});
+
+app.delete('/delete/:id', (request, response) => {
+
+  return response.send(204);
 });
 
 app.listen(3333, () => {
