@@ -1,6 +1,8 @@
 import express from 'express';
 import { prisma } from './database/prisma';
 
+import { z } from "zod";
+
 const app = express();
 
 app.use(express.json());
@@ -10,6 +12,18 @@ app.get('/ping',  (request, response) => {
 });
 
 app.post('/create', async (request, response) => {
+  const ruralProducerBodySchema = z.object({
+    cpf_cnpj: z.string().min(11).max(14),
+    producer_name: z.string(),
+    farm_name: z.string(),
+    city: z.string(),
+    state: z.string(),
+    agricultural_area_hectares: z.number(),
+    vegetation_area_hectares: z.number(),
+    total_area_hectares: z.number(),
+    planted_crops: z.array(z.string())
+  });
+
   const {
     cpf_cnpj,
     producer_name,
@@ -20,7 +34,7 @@ app.post('/create', async (request, response) => {
     vegetation_area_hectares,
     total_area_hectares,
     planted_crops
-  } = request.body;
+  } = ruralProducerBodySchema.parse(request.body);
 
   const ruralProducer = await prisma.ruralProducer.create({
     data: {
@@ -40,6 +54,18 @@ app.post('/create', async (request, response) => {
 });
 
 app.patch('/update/:id', async (request, response) => {
+  const ruralProducerBodySchema = z.object({
+    cpf_cnpj: z.string().min(11).max(14),
+    producer_name: z.string(),
+    farm_name: z.string(),
+    city: z.string(),
+    state: z.string(),
+    agricultural_area_hectares: z.number(),
+    vegetation_area_hectares: z.number(),
+    total_area_hectares: z.number(),
+    planted_crops: z.array(z.string())
+  });
+
   const {
     cpf_cnpj,
     producer_name,
@@ -50,7 +76,7 @@ app.patch('/update/:id', async (request, response) => {
     vegetation_area_hectares,
     total_area_hectares,
     planted_crops
-  } = request.body;
+  } = ruralProducerBodySchema.parse(request.body);
 
   const { id } = request.params;
 
