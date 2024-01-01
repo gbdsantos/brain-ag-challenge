@@ -2,6 +2,7 @@ import express from 'express';
 import { prisma } from './database/prisma';
 
 import { z } from "zod";
+import { validateCPFCNPJ } from './utils/validate-cpf-cnpj';
 
 const app = express();
 
@@ -54,6 +55,12 @@ app.post('/create', async (request, response) => {
       total_area_hectares,
       planted_crops
     } = request.body;
+
+    const cnpjOrCpfIsValid = validateCPFCNPJ(cpf_cnpj);
+
+    if (!cnpjOrCpfIsValid) {
+      return response.status(400).json({ error: "CNPJ/CPF number must be valid."});
+    }
 
     const sumHectaresArea = agricultural_area_hectares + vegetation_area_hectares;
 
@@ -136,6 +143,12 @@ app.patch('/update/:id', async (request, response) => {
     } = request.body;
 
     const { id } = request.params;
+
+    const cnpjOrCpfIsValid = validateCPFCNPJ(cpf_cnpj);
+
+    if (!cnpjOrCpfIsValid) {
+      return response.status(400).json({ error: "CNPJ/CPF number must be valid."});
+    }
 
     const sumHectaresArea = agricultural_area_hectares + vegetation_area_hectares;
 
