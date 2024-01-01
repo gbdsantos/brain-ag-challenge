@@ -1,0 +1,13 @@
+# docker run --name brain-ag-challenge-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=api-brain-ag -p 5432:5432 bitnami/postgresql:latest
+version: '3'
+
+services:
+  brain-ag-challenge-pg:
+    container_name: brain-ag-challenge-pg
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=api-brain-ag
