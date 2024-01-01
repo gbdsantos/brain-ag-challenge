@@ -12,8 +12,13 @@ app.get('/ping',  (request, response) => {
 });
 
 app.post('/create', async (request, response) => {
+  const cnpjCpfRegex = RegExp("^(\\d{3})\\.?(\\d{3})\\.?(\\d{3})\\-?(\\d{2}$)$|^(\\d{2})\\.?(\\d{3})\\.?(\\d{3})\\/?([0-1]{4})\\-?(\\d{2})$");
+
   const ruralProducerBodySchema = z.object({
-    cpf_cnpj: z.string().min(11, { message: "O CPF/CNPJ deve ter no mínimo 11 dígitos." } ).max(14),
+    cpf_cnpj: z.string({
+      required_error: "CNPJ/CPF is required.",
+      invalid_type_error: "CNPJ/CPF must be a string."
+    }).regex(cnpjCpfRegex, { message: "CNPJ/CPF is invalid."}),
     producer_name: z.string(),
     farm_name: z.string(),
     city: z.string(),
@@ -87,8 +92,13 @@ app.post('/create', async (request, response) => {
 });
 
 app.patch('/update/:id', async (request, response) => {
+  const cnpjCpfRegex = RegExp("^(\\d{3})\\.?(\\d{3})\\.?(\\d{3})\\-?(\\d{2}$)$|^(\\d{2})\\.?(\\d{3})\\.?(\\d{3})\\/?([0-1]{4})\\-?(\\d{2})$");
+
   const ruralProducerBodySchema = z.object({
-    cpf_cnpj: z.string().min(11).max(14),
+    cpf_cnpj: z.string({
+      required_error: "CNPJ/CPF is required.",
+      invalid_type_error: "CNPJ/CPF must be a string."
+    }).regex(cnpjCpfRegex, { message: "CNPJ/CPF is invalid."}),
     producer_name: z.string(),
     farm_name: z.string(),
     city: z.string(),
