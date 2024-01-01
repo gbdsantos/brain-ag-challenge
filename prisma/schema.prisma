@@ -11,18 +11,56 @@ datasource db {
 }
 
 model RuralProducer {
-  id                         String   @id @default(uuid())
-  cpf_cnpj                   String   @unique
+  id                         String        @id @default(uuid())
+  cpf_cnpj                   String        @unique
   producer_name              String
   farm_name                  String
   city                       String
-  state                      String
+  state                      State
   agricultural_area_hectares Int
   vegetation_area_hectares   Int
   total_area_hectares        Int
-  planted_crops              String[]
-  created_at                 DateTime @default(now())
-  updated_at                 DateTime @updatedAt()
+  planted_crops              PlantedCrop[]
+  created_at                 DateTime      @default(now())
+  updated_at                 DateTime      @updatedAt()
 
   @@map("rural_producer")
+}
+
+model PlantedCrop {
+  id              String          @id @default(uuid())
+  name            String
+  rural_producers RuralProducer[]
+
+  @@map("planted_crop")
+}
+
+enum State {
+  acre
+  alagoas
+  amapa
+  amazonas
+  bahia
+  ceara
+  distrito_federal
+  espirito_santo
+  goias
+  maranhao
+  mato_grosso
+  mato_grosso_do_sul
+  minas_gerais
+  para
+  paraiba
+  parana
+  pernambuco
+  piaui
+  rio_de_janeiro
+  rio_grande_do_norte
+  rio_grande_do_sul
+  rondonia
+  roraima
+  santa_catarina
+  sao_paulo
+  sergipe
+  tocantins
 }
