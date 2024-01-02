@@ -24,15 +24,17 @@ model RuralProducer {
   created_at                 DateTime      @default(now())
   updated_at                 DateTime      @updatedAt()
 
-  @@map("rural_producer")
+  @@map("rural_producers")
 }
 
 model PlantedCrop {
-  id              String          @id @default(uuid())
-  name            String
-  rural_producers RuralProducer[]
+  id   String @id @default(uuid())
+  name String
 
-  @@map("planted_crop")
+  rural_producer    RuralProducer? @relation(fields: [rural_producer_id], references: [id])
+  rural_producer_id String?
+
+  @@map("planted_crops")
 }
 
 enum State {
