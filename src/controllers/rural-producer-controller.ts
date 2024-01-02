@@ -160,6 +160,12 @@ class RuralProducerController {
     });
 
     if (ruralProducer) {
+      await prisma.plantedCrop.deleteMany({
+        where: {
+          rural_producer_id: id
+        }
+      });
+
       const updatedRuralProducer = await prisma.ruralProducer.update({
         where: {
           id: id
