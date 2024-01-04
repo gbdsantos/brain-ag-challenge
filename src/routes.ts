@@ -10,6 +10,7 @@ routes.get('/ping',  (request, response) => {
 });
 
 routes.post('/create', RuralProducerController.create);
+routes.get('/index', RuralProducerController.index);
 routes.patch('/update/:id', RuralProducerController.update);
 routes.delete('/delete/:cpf_cnpj', RuralProducerController.delete);
 

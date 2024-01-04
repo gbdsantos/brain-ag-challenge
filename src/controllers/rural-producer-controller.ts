@@ -91,6 +91,21 @@ class RuralProducerController {
     return response.status(201).json(ruralProducer);
   }
 
+  async index(request: Request, response: Response) {
+    const ruralProducers = await prisma.ruralProducer.findMany({
+      include: {
+        planted_crops: {
+          select: {
+            name: true,
+          }
+        },
+      },
+
+    });
+
+    return response.status(200).json(ruralProducers);
+  }
+
   async update(request: Request, response: Response) {
     const cnpjCpfRegex = RegExp("^(\\d{3})\\.?(\\d{3})\\.?(\\d{3})\\-?(\\d{2}$)$|^(\\d{2})\\.?(\\d{3})\\.?(\\d{3})\\/?([0-1]{4})\\-?(\\d{2})$");
 
