@@ -91,7 +91,7 @@ class RuralProducerController {
     return response.status(201).json(ruralProducer);
   }
 
-  async index(request: Request, response: Response) {
+  async index(_: Request, response: Response) {
     const ruralProducers = await prisma.ruralProducer.findMany({
       include: {
         planted_crops: {
@@ -100,7 +100,6 @@ class RuralProducerController {
           }
         },
       },
-
     });
 
     return response.status(200).json(ruralProducers);

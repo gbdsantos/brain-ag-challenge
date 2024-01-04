@@ -5,7 +5,7 @@ import DashboardController from './controllers/dashboard-controller';
 
 const routes = express.Router();
 
-routes.get('/ping',  (request, response) => {
+routes.get('/ping',  (_, response) => {
   return response.status(200).json({ message: 'Server is running.' });
 });
 
@@ -14,6 +14,6 @@ routes.get('/index', RuralProducerController.index);
 routes.patch('/update/:id', RuralProducerController.update);
 routes.delete('/delete/:cpf_cnpj', RuralProducerController.delete);
 
-routes.get('/totals', DashboardController.index)
+routes.get('/totals', DashboardController.index);
 
 export default routes;
