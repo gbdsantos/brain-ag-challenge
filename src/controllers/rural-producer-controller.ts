@@ -10,18 +10,43 @@ class RuralProducerController {
 
     const ruralProducerBodySchema = z.object({
       cpf_cnpj: z.string({
-        required_error: "CNPJ/CPF is required.",
-        invalid_type_error: "CNPJ/CPF must be a string."
-      }).regex(cnpjCpfRegex, { message: "CNPJ/CPF is invalid."}),
-      producer_name: z.string(),
-      farm_name: z.string(),
-      city: z.string(),
-      state: z.string(),
-      agricultural_area_hectares: z.number(),
-      vegetation_area_hectares: z.number(),
-      total_area_hectares: z.number(),
-      planted_crops: z.array(z.string().toLowerCase())
-    }).required();
+        required_error: "CNPJ/CPF field is required.",
+        invalid_type_error: "CNPJ/CPF field must be a string."
+      }).regex(cnpjCpfRegex, { message: "CNPJ/CPF format is invalid."}),
+      producer_name: z.string({
+        required_error: "Producer name field is required.",
+        invalid_type_error: "Producer name field must be a string."
+      }),
+      farm_name: z.string({
+        required_error: "Farm name field is required.",
+        invalid_type_error: "Farm name field must be a string."
+      }),
+      city: z.string({
+        required_error: "City field is required.",
+        invalid_type_error: "City field must be a string."
+      }),
+      state: z.string({
+        required_error: "State field is required.",
+        invalid_type_error: "State field must be a string."
+      }),
+      agricultural_area_hectares: z.number({
+        required_error: "Agricultural area (hectares) field is required.",
+        invalid_type_error: "Agricultural area (hectares) field must be a number."
+      }),
+      vegetation_area_hectares: z.number({
+        required_error: "Vegetation area (hectares) field is required.",
+        invalid_type_error: "Vegetation area (hectares) field must be a number."
+      }),
+      total_area_hectares: z.number({
+        required_error: "Total area (hectares) field is required.",
+        invalid_type_error: "Total area (hectares) field must be a number."
+      }),
+      planted_crops: z.array(z.string({
+          required_error: "Planted crop field is required.",
+          invalid_type_error: "Each planted crop element must be a string."
+        }
+      ).toLowerCase())})
+      .required();
 
     const validationResult = ruralProducerBodySchema.safeParse(request.body);
 
@@ -110,18 +135,43 @@ class RuralProducerController {
 
     const ruralProducerBodySchema = z.object({
       cpf_cnpj: z.string({
-        required_error: "CNPJ/CPF is required.",
-        invalid_type_error: "CNPJ/CPF must be a string."
-      }).regex(cnpjCpfRegex, { message: "CNPJ/CPF is invalid." }),
-      producer_name: z.string(),
-      farm_name: z.string(),
-      city: z.string(),
-      state: z.string(),
-      agricultural_area_hectares: z.number(),
-      vegetation_area_hectares: z.number(),
-      total_area_hectares: z.number(),
-      planted_crops: z.array(z.string())
-    }).required();
+        required_error: "CNPJ/CPF field is required.",
+        invalid_type_error: "CNPJ/CPF field must be a string."
+      }).regex(cnpjCpfRegex, { message: "CNPJ/CPF format is invalid."}),
+      producer_name: z.string({
+        required_error: "Producer name field is required.",
+        invalid_type_error: "Producer name field must be a string."
+      }),
+      farm_name: z.string({
+        required_error: "Farm name field is required.",
+        invalid_type_error: "Farm name field must be a string."
+      }),
+      city: z.string({
+        required_error: "City field is required.",
+        invalid_type_error: "City field must be a string."
+      }),
+      state: z.string({
+        required_error: "State field is required.",
+        invalid_type_error: "State field must be a string."
+      }),
+      agricultural_area_hectares: z.number({
+        required_error: "Agricultural area (hectares) field is required.",
+        invalid_type_error: "Agricultural area (hectares) field must be a number."
+      }),
+      vegetation_area_hectares: z.number({
+        required_error: "Vegetation area (hectares) field is required.",
+        invalid_type_error: "Vegetation area (hectares) field must be a number."
+      }),
+      total_area_hectares: z.number({
+        required_error: "Total area (hectares) field is required.",
+        invalid_type_error: "Total area (hectares) field must be a number."
+      }),
+      planted_crops: z.array(z.string({
+          required_error: "Planted crop field is required.",
+          invalid_type_error: "Each planted crop element must be a string."
+        }
+      ).toLowerCase())})
+      .required();
 
     const validationResult = ruralProducerBodySchema.safeParse(request.body);
 
