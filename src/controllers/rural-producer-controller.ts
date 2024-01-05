@@ -90,6 +90,16 @@ class RuralProducerController {
       return item.toLowerCase();
     });
 
+    const hasRuralProducer = await prisma.ruralProducer.findUnique({
+      where: {
+        cpf_cnpj
+      }
+    });
+
+    if (hasRuralProducer) {
+      return response.status(409).json({ error: "Rural producer already exists."});
+    }
+
     const ruralProducer = await prisma.ruralProducer.create({
       data: {
         cpf_cnpj,
