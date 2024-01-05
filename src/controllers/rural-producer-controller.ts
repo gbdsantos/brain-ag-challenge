@@ -109,7 +109,11 @@ class RuralProducerController {
         }
       },
       include: {
-        planted_crops: true,
+        planted_crops: {
+          select: {
+            name: true
+          }
+        },
       }
     });
 
