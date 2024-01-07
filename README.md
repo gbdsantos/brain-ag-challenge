@@ -41,5 +41,44 @@ npx prisma migrate dev
 npm run seed
 ```
 
+## 💡 About
+
+This test aims to assess the candidate's skills in some problem-solving related the programming logic, business rules and object-oriented.
+
+In summary, it involves registering rural producers with the following data:
+
+1. CPF or CNPJ
+2. Producer name
+3. Farm Name
+4. City
+5. State
+6. Total area of the farm in hectares
+7. Arable area in hectares
+8. Vegetation area in hectares
+9. Planted crops (Soybeans, Corn, Cotton, Coffee, Sugarcane)
+
+
+## Business requirements
+
+- [x] The user must be able to register, edit, and exclude rural producers.
+- [x] The system must validate incorrectly entered CPF and CNPJ  .
+- [x] The sum of arable area and vegetation must not exceed the total farm area
+- [x] Each producer can cultivate more than one crop on their Farm.
+- [x] The platform must include a Dashboard that shows:
+- [x] Total number of farms
+- [x] Total farms in hectares (total area)
+  - [x] Pie chart by state.
+  - [x] Pie chart by crop type.
+  - [x] Pie chart by land use (Agricultural area and vegetation)
+
+## Technical requirements
+
+- [x] Save the data in a Postgres database using Node.js as a backend layer, and deliver the endpoints to **register**, **edit**, and **delete rural producers**, in addition to the endpoint that returns the **totals to the dashboard**.
+- [x] The creation of "mocked" data structures is part of the evaluation.
+
+## Extra mile
+
+- [x] Implements automated tests (unit tests)
+
 ---
 Made with ❤️ by 🧑‍🚀 Guilherme Bezerra 👋 [Get in touch!](https://www.linkedin.com/in/gbdsantos/)
