@@ -79,6 +79,7 @@ class RuralProducerController {
         planted_crops
       } = request.body;
 
+      const cleanCPF_CNPJ = cpf_cnpj.replace(/[^\d]+/g, '');
       const cnpjOrCpfIsValid = validateCPFCNPJ(cpf_cnpj);
 
       if (!cnpjOrCpfIsValid) {
@@ -119,7 +120,7 @@ class RuralProducerController {
 
       const ruralProducer = await prisma.ruralProducer.create({
         data: {
-          cpf_cnpj,
+          cpf_cnpj: cleanCPF_CNPJ,
           producer_name,
           farm_name,
           city,
@@ -252,6 +253,7 @@ class RuralProducerController {
 
       const { id } = request.params;
 
+      const cleanCPF_CNPJ = cpf_cnpj.replace(/[^\d]+/g, '');
       const cnpjOrCpfIsValid = validateCPFCNPJ(cpf_cnpj);
 
       if (!cnpjOrCpfIsValid) {
@@ -294,7 +296,7 @@ class RuralProducerController {
             id: id
           },
           data: {
-            cpf_cnpj,
+            cpf_cnpj: cleanCPF_CNPJ,
             producer_name,
             farm_name,
             city,

@@ -1,12 +1,12 @@
 export function validateCPFCNPJ(cpfOrCnpj: string) {
   if (typeof cpfOrCnpj !== 'string') return false;
-  // const cleanCPF = cpf.replace(/[^\d]+/g, '');
+  const cleanCPF_CNPJ = cpfOrCnpj.replace(/[^\d]+/g, '');
 
-  if (cpfOrCnpj.length === 11) {
-    return validateCPF(cpfOrCnpj);
+  if (cleanCPF_CNPJ.length === 11) {
+    return validateCPF(cleanCPF_CNPJ);
   }
-  else if (cpfOrCnpj.length === 14) {
-    return validateCNPJ(cpfOrCnpj);
+  else if (cleanCPF_CNPJ.length === 14) {
+    return validateCNPJ(cleanCPF_CNPJ);
   }
 }
 
