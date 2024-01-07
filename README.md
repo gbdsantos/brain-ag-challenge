@@ -39,6 +39,9 @@ npx prisma migrate dev
 
 # Run seeds
 npm run seed
+
+# Run tests [OPTIONAL]
+npm test
 ```
 
 ## 💡 About
@@ -79,6 +82,7 @@ In summary, it involves registering rural producers with the following data:
 ## Extra mile
 
 - [x] Implements automated tests (unit tests)
+- [x] Accept CPF or CNJP masked
 
 ---
 Made with ❤️ by 🧑‍🚀 Guilherme Bezerra 👋 [Get in touch!](https://www.linkedin.com/in/gbdsantos/)
