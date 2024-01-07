@@ -106,7 +106,7 @@ class RuralProducerController {
 
       const hasRuralProducer = await prisma.ruralProducer.findUnique({
         where: {
-          cpf_cnpj
+          cpf_cnpj: cleanCPF_CNPJ
         }
       });
 
