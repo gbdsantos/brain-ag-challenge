@@ -25,11 +25,10 @@
 </p>
 
 <p align="center">
-    <a href="#getting-started" alt="Getting Start">Getting Start</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#start" alt="Getting Started">Getting Started</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#about" alt="About">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#technologies" alt="Technologies used">Technologies used</a>
 </p>
-
 
 ## Table of contents
 
