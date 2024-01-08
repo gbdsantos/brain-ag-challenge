@@ -104,20 +104,6 @@ class RuralProducerController {
         return item.toLowerCase();
       });
 
-      const hasRuralProducer = await prisma.ruralProducer.findUnique({
-        where: {
-          cpf_cnpj: cleanCPF_CNPJ
-        }
-      });
-
-      if (hasRuralProducer) {
-        return response.status(409).json({
-          message: "Rural producer already exists.",
-          status: "error",
-          status_code: 409
-        });
-      }
-
       const ruralProducer = await prisma.ruralProducer.create({
         data: {
           cpf_cnpj: cleanCPF_CNPJ,
@@ -340,18 +326,18 @@ class RuralProducerController {
 
   public async delete(request: Request, response: Response) {
     try {
-      const { cpf_cnpj } = request.params;
+      const { id } = request.params;
 
       let ruralProducer = await prisma.ruralProducer.findUnique({
         where: {
-          cpf_cnpj
+          id
         }
       });
 
       if (ruralProducer) {
         await prisma.ruralProducer.delete({
           where: {
-            cpf_cnpj
+            id
           }
         });
 

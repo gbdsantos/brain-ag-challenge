@@ -12,7 +12,7 @@ routes.get('/ping',  (_, response) => {
 routes.post('/create', RuralProducerController.create);
 routes.get('/index', RuralProducerController.index);
 routes.patch('/update/:id', RuralProducerController.update);
-routes.delete('/delete/:cpf_cnpj', RuralProducerController.delete);
+routes.delete('/delete/:id', RuralProducerController.delete);
 
 routes.get('/totals', DashboardController.index);
 
