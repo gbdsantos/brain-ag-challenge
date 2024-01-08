@@ -164,10 +164,10 @@ describe("Rural producer routes", () => {
     .get('/index')
     .expect(200);
 
-    const ruralProducerCpfCnpj = ruralProducersResponse.body[0].cpf_cnpj;
+    const ruralProducerId = ruralProducersResponse.body[0].id;
 
     await request(app)
-    .delete(`/delete/${ruralProducerCpfCnpj}`)
+    .delete(`/delete/${ruralProducerId}`)
     .expect(204);
   });
 });
